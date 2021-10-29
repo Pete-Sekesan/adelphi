@@ -12,21 +12,13 @@ function getDeptList() {
 }
 
 function displayResults(responseJson) {
-  for (let i = 0; i < responseJson.results.length; i++) {
-    let code = responseJson.results[i].code;
-    let title = responseJson.results[i].title;
-    console.log(code, title);
-    $('#table').append(
-      `<table>
-            <tr>
-                <th>Code</th>
-                <th>Title</th>
-            </tr>
-            <td>${code}</td>
-            <td>${title}</td>
-        </table>`
+  responseJson.results
+    .filter((res) => res.parent === null)
+    .forEach((res) =>
+      $(`#table`).append(
+        `<table> <tr> <th>Code</th> <th>Title</th> </tr> <td>${res.code}</td> <td>${res.title}</td> </table>`
+      )
     );
-  }
 }
 
 function initiateSearch() {
