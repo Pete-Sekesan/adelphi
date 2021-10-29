@@ -16,7 +16,7 @@ function displayResults(responseJson) {
     .filter((res) => res.parent === null)
     .forEach((res) =>
       $(`#table`).append(
-        `<table> <tr> <th>Code</th> <th>Title</th> </tr> <td>${res.code}</td> <td>${res.title}</td> </table>`
+        `<table class="results"> <tr> <th>Code</th> <th>Title</th> </tr> <td>${res.code}</td> <td>${res.title}</td> </table>`
       )
     );
 }
