@@ -8,10 +8,26 @@ function getDeptList() {
       }
       throw new Error(response.statusCode);
     })
-    .then((responseJson) => console.log(responseJson));
+    .then((responseJson) => displayResults(responseJson));
 }
 
-function displayResults(responseJson) {}
+function displayResults(responseJson) {
+  for (let i = 0; i < responseJson.results.length; i++) {
+    let code = responseJson.results[i].code;
+    let title = responseJson.results[i].title;
+    console.log(code, title);
+    $('#table').append(
+      `<table>
+            <tr>
+                <th>Code</th>
+                <th>Title</th>
+            </tr>
+            <td>${code}</td>
+            <td>${title}</td>
+        </table>`
+    );
+  }
+}
 
 function initiateSearch() {
   $('form').submit((event) => {
